@@ -3,7 +3,11 @@ pub enum Enum {
 }
 
 pub struct Struct {
-    data: Enum,
+    // To reproduce the ICE bug:
+    // * Step 1: do `cargo check`
+    // * Step 2: change `Box<Enum>` to `Enum`
+    // * Step 3: do `cargo check` again
+    data: Box<Enum>,
 }
 
 fn main() {}
